@@ -1,34 +1,42 @@
 from flask import Flask
 from flask import request
+from flask import render_template
 
 app = Flask(__name__)
 
-@app.route("/")
-def index():
-    celsius = request.args.get("subreddit", "")
-    test = request.args.get("title", "")
-    test = request.args.get("prompt", "")
-    if celsius:
-        fahrenheit = fahrenheit_from(celsius)
+@app.route("/", methods = ['POST', "GET"])
+def home():
+
+    if request.method == "POST":
+        subreddit = request.form['subreddit']
+        title = request.form['title']
+        prompt = request.form['prompt']
     else:
-        fahrenheit = ""
-    return (
-        """<form action="" method="get">
-                Subreddit: <input type="text" name="subreddit">
-                <br>
-                <br>
-                Thread Title: <input type="text" name="title">
-                <br>
-                <br>
-                Prompt: <input type="text" name="prompt">
-                <br>
-                <br>
-                <input type="submit" value="Generate">
-            </form>"""
-        + "Fahrenheit: "
-        + fahrenheit
-        + test
-    )
+        subreddit = 'blank'
+        title = 'blank'
+        prompt = 'blank'
+    return render_template('index.html', subreddit = subreddit, title = title, prompt = prompt)
+    # if celsius:
+    #     fahrenheit = fahrenheit_from(celsius)
+    # else:
+    #     fahrenheit = ""
+    # return (
+        # """<form action="" method="get">
+        #         Subreddit: <input type="text" name="subreddit">
+        #         <br>
+        #         <br>
+        #         Thread Title: <input type="text" name="title">
+        #         <br>
+        #         <br>
+        #         Prompt: <input type="text" name="prompt">
+        #         <br>
+        #         <br>
+        #         <input type="submit" value="Generate">
+        #     </form>"""
+    #     + "Fahrenheit: "
+    #     + fahrenheit
+    #     + test
+    # )
 
 def fahrenheit_from(celsius):
     """Convert Celsius to Fahrenheit degrees."""

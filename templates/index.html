@@ -1,0 +1,55 @@
+<html>
+    <head>
+        <title> Home Page </title>
+        <link rel='stylesheet' type='text/css' href="{{ url_for('static', filename='styles.css')}}">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    </head>
+    <body>
+        <div style="width: 100%; height: 450px">
+            <div style="width: 50%; float: left;"> 
+                <h1>
+                    Input:
+                </h1>
+                <form class="form" action="" method="POST">
+                    <label for="subreddit" class='subreddit'>Subreddit:</label>
+                    <input id="subreddit" type="text" name='subreddit'>
+            
+                    <label for="title" class="title">Title:</label>
+                    <input id="title" type="text" name='title'>
+            
+                    <label for="prompt", class='prompt'>Prompt:</label>
+                    <textarea id="prompt" type="text" name="prompt"></textarea>
+                    
+                    <button>Submit</button>
+                </form> 
+            </div>
+            <div style="margin-left: 50%;"> 
+                <h1>
+                    Output:
+                </h1>
+                <textarea type="text" id="myOutput">{{subreddit}}/{{title}}/{{prompt}}</textarea>
+                <button onclick="copytext()"><i class="material-icons">content_paste</i></button>
+
+                <script>
+                    function copytext() {
+                    var copyText = document.getElementById("myOutput");
+                    copyText.select();
+                    copyText.setSelectionRange(0, 99999)
+                    document.execCommand("copy");
+                    }
+                </script>            
+            </div>
+        </div>
+
+        <p>
+            This is some more text
+        </p>
+
+
+
+
+
+    </body>
+</html>
