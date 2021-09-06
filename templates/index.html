@@ -5,8 +5,11 @@
 
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
     </head>
     <body>
+        <div id="loading"></div>
         <div style="width: 100%; height: 450px">
             <div style="width: 50%; float: left;"> 
                 <h1>
@@ -14,22 +17,23 @@
                 </h1>
                 <form class="form" action="" method="POST">
                     <label for="subreddit" class='subreddit'>Subreddit:</label>
-                    <input id="subreddit" type="text" name='subreddit'>
+                    <input id="subreddit" type="text" name='subreddit' value="{{subreddit}}">
             
                     <label for="title" class="title">Title:</label>
-                    <input id="title" type="text" name='title'>
+                    <input id="title" type="text" name='title' value="{{title}}">
             
                     <label for="prompt", class='prompt'>Prompt:</label>
-                    <textarea id="prompt" type="text" name="prompt"></textarea>
+                    <textarea id="prompt" type="text" name="prompt">{{prompt}}</textarea>
                     
-                    <button>Submit</button>
+                    <button onclick="$('#loading').show();">Submit</button>
                 </form> 
+   
             </div>
             <div style="margin-left: 50%;"> 
                 <h1>
                     Output:
                 </h1>
-                <textarea type="text" id="myOutput">{{subreddit}}/{{title}}/{{prompt}}</textarea>
+                <textarea type="text" id="myOutput">{{output}}</textarea>
                 <button onclick="copytext()"><i class="material-icons">content_paste</i></button>
 
                 <script>
@@ -46,10 +50,6 @@
         <p>
             This is some more text
         </p>
-
-
-
-
 
     </body>
 </html>
